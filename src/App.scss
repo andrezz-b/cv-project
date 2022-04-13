@@ -1,0 +1,14 @@
+@import "./styles/mixins", "./styles/variables";
+
+#root {
+  height: 100%;
+}
+
+.App {
+  @include flexCenter(column);
+  height: 100%;
+  
+  main {
+    height: 100%;
+  }
+}

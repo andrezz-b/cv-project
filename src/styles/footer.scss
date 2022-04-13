@@ -1,0 +1,21 @@
+@import "variables", "mixins";
+
+footer {
+  @include flexCenter;
+  width: 100%;
+  color: white;
+  font-family: $ff-title;
+  background-color: $clr-bg-blck;
+
+  div {
+    padding: 0.25rem;
+    @include flexCenter;
+    justify-content: flex-start;
+  }
+
+  a {
+    padding: 0 0.5rem;
+    font-size: 1.5em;
+    color: white;
+  }
+}

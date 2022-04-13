@@ -1,0 +1,15 @@
+@import "variables", "mixins";
+
+header {
+  @include flexCenter;
+  font-family: $ff-title;
+  background-color: $clr-bg-dk;
+  width: 100%;
+  padding: 1em;
+
+  .title {
+    color: white;
+    font-weight: 700;
+    font-size: 3em;
+  }
+}
