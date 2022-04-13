@@ -22,5 +22,6 @@ module.exports = {
     quotes: ["error", "double"],
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/prop-types": [0],
   },
 };
