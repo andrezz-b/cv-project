@@ -1,0 +1,43 @@
+@import "variables", "mixins";
+
+.input-container {
+  @include flexCenter;
+  justify-content: space-between;
+  width: 100%;
+  column-gap: 1.5rem;
+}
+
+.subtitle {
+  font-family: $ff-title;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: $clr-bg-blck;
+  flex: 1;
+}
+
+.input--text {
+  vertical-align: middle;
+  font-family: $ff-text;
+  flex: 1;
+  font-size: 1.15em;
+  padding: 0.25em 0.75em;
+  outline: none;
+  border: 2px solid $clr-bg-blck;
+  border-radius: 17px;
+  background-color: rgba(#e5e5e5, 0.3);
+
+  &:focus {
+    border: 2px solid $clr-prim;
+    background-color: #fff;
+  }
+}
+
+.display--text {
+  vertical-align: middle;
+  flex: 1;
+  border: 2px solid transparent;
+  font-family: $ff-text;
+  font-size: 1.15em;
+  padding: 0.25em 0.75em;
+  color: $clr-bg-blck;
+}

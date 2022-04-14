@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import InputField from "./InputField";
+import "../styles/generalInfo.scss";
 
 class GeneralInfo extends Component {
   constructor(props) {
@@ -56,9 +57,9 @@ class GeneralInfo extends Component {
     const { edit, data } = this.state;
     const { name, email, phone } = data;
     return (
-      <div>
+      <div className="generalInfo-container">
         <h1 className="title">General Info</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form className="generalInfo-form" onSubmit={(e) => e.preventDefault()}>
           <InputField
             title="Name:"
             edit={edit}

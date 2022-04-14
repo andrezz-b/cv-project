@@ -1,0 +1,26 @@
+@import "variables", "mixins";
+
+.generalInfo-container {
+  @include flexCenter(column);
+  align-items: flex-start;
+  font-size: 1.15em;
+  width: 80%;
+  padding: .5em 2em;
+
+  .title {
+    font-family: $ff-title;
+    color: $clr-prim;
+    width: 100%;
+    padding: .25em .5em;
+    font-size: 2.4em;
+    border-bottom: 2px solid rgba(#e5e5e5, 0.8);
+  }
+}
+
+.generalInfo-form {
+  @include flexCenter(column);
+  padding: 1rem 0;
+  width: 100%;
+  row-gap: 1rem;
+}
+
