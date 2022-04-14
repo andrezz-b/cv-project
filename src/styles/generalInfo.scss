@@ -1,5 +1,6 @@
 @import "variables", "mixins";
 
+
 .generalInfo-container {
   @include flexCenter(column);
   align-items: flex-start;
@@ -7,15 +8,22 @@
   width: 80%;
   padding: .5em 2em;
 
+
+}
+.title-container {
+  @include flexCenter;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid rgba(#e5e5e5, 0.8);
+  padding: .25em .5em;
+
   .title {
     font-family: $ff-title;
     color: $clr-prim;
-    width: 100%;
-    padding: .25em .5em;
     font-size: 2.4em;
-    border-bottom: 2px solid rgba(#e5e5e5, 0.8);
   }
 }
+
 
 .generalInfo-form {
   @include flexCenter(column);

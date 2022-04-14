@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import InputField from "./InputField";
+import SaveCancelBtn from "./SaveCancelBtn";
+import EditBtn from "./EditBtn";
 import "../styles/generalInfo.scss";
 
 class GeneralInfo extends Component {
@@ -43,11 +45,13 @@ class GeneralInfo extends Component {
   changeHandler(e) {
     const { name, value } = e.target;
     const { data } = this.state;
-    const newData = Object.fromEntries(Object.entries(data).map((entry) => {
-      // eslint-disable-next-line no-param-reassign
-      entry[1] = entry[0] === name ? value : entry[1];
-      return entry;
-    }));
+    const newData = Object.fromEntries(
+      Object.entries(data).map((entry) => {
+        // eslint-disable-next-line no-param-reassign
+        entry[1] = entry[0] === name ? value : entry[1];
+        return entry;
+      }),
+    );
     this.setState({
       data: newData,
     });
@@ -58,7 +62,10 @@ class GeneralInfo extends Component {
     const { name, email, phone } = data;
     return (
       <div className="generalInfo-container">
-        <h1 className="title">General Info</h1>
+        <div className="title-container">
+          <h1 className="title">General Info</h1>
+          <EditBtn edit={edit} onEdit={this.changeEdit} />
+        </div>
         <form className="generalInfo-form" onSubmit={(e) => e.preventDefault()}>
           <InputField
             title="Name:"
@@ -82,12 +89,7 @@ class GeneralInfo extends Component {
             dataID="phone"
           />
 
-          {edit ? (
-            <div>
-              <button type="submit" onClick={this.changeEdit}>Save</button>
-              <button type="button" onClick={this.cancelEdit}>Cancel</button>
-            </div>
-          ) : <button type="button" onClick={this.changeEdit}>Edit</button>}
+          <SaveCancelBtn edit={edit} onEdit={this.changeEdit} onCancel={this.cancelEdit} />
         </form>
       </div>
     );

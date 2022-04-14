@@ -1,0 +1,58 @@
+@import "variables", "mixins";
+
+.button-container {
+  width: 100%;
+  @include flexCenter;
+  justify-content: flex-end;
+  column-gap: 1.5rem;
+  padding: 0 2em;
+}
+
+.button {
+  @include flexCenter;
+  height: 2em;
+  width: 2em;
+  font-size: 1.15em;
+  font-family: $ff-title;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+
+  svg {
+    width: 75%;
+    height: 75%;
+  }
+
+  &.save {
+    font-size: 1.15em;
+    color: $clr-accept;
+    border: 3px solid $clr-accept;
+
+    &:hover {
+      background-color: $clr-accept;
+      color: white;
+    }
+  }
+
+  &.cancel {
+    color: $clr-decline;
+    border: 3px solid $clr-decline;
+
+    &:hover {
+      background-color: $clr-decline;
+      color: white;
+    }
+  }
+
+  &.edit {
+    color: $clr-prim;
+    border: 3px solid $clr-prim;
+    margin-top: 1rem;
+    &:hover {
+      background-color: $clr-prim;
+      color: white;
+    }
+  }
+}
