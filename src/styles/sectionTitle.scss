@@ -1,0 +1,16 @@
+@import "variables", "mixins";
+
+.title-container {
+  @include flexCenter;
+  justify-content: space-between;
+  font-size: 1.15em;
+  width: 100%;
+  border-bottom: 2px solid rgba(#e5e5e5, 0.8);
+  padding: 0.25em 0.5em;
+
+  .title {
+    font-family: $ff-title;
+    color: $clr-prim;
+    font-size: 2.4em;
+  }
+}

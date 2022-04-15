@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import InputField from "./InputField";
 import SaveCancelBtn from "./SaveCancelBtn";
-import EditBtn from "./EditBtn";
+import SectionTitle from "./SectionTitle";
 import "../styles/generalInfo.scss";
 
 class GeneralInfo extends Component {
@@ -62,10 +62,7 @@ class GeneralInfo extends Component {
     const { name, email, phone } = data;
     return (
       <div className="generalInfo-container">
-        <div className="title-container">
-          <h1 className="title">General Info</h1>
-          <EditBtn edit={edit} onEdit={this.changeEdit} />
-        </div>
+        <SectionTitle title="General Info" onEdit={this.changeEdit} edit={edit} />
         <form className="generalInfo-form" onSubmit={(e) => e.preventDefault()}>
           <InputField
             title="Name:"

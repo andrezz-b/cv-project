@@ -9,10 +9,10 @@
   height: 100%;
   
   main {
-    @include flexCenter;
+    @include flexCenter(column);
     padding: 2rem;
-    align-items: flex-start;
     width: 50%;
+    justify-content: flex-start;
     border: 1px solid red;
     height: 100%;
   }

@@ -8,7 +8,7 @@ function InputField(props) {
 
   return (
     <div className="input-container">
-      <h2 className="subtitle">{title}</h2>
+      {title && <h2 className="subtitle">{title}</h2>}
       {edit ? (
         <input
           className="input--text"
