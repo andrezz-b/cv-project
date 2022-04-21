@@ -9,8 +9,9 @@
 
   .input-container {
     @include flexCenter(column);
+    align-items: flex-start;
     flex: 1;
-    row-gap: 1rem;
+    row-gap: .5rem;
     width: 100%;
     input {
       width: 100%;

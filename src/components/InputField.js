@@ -3,9 +3,9 @@ import "../styles/inputField.scss";
 
 function InputField(props) {
   const {
-    title, edit, value, change, dataID,
+    title, edit, value, change, dataID, bold,
   } = props;
-
+  const className = `display--text ${bold && "bold"}`;
   return (
     <div className="input-container">
       {title && <h2 className="subtitle">{title}</h2>}
@@ -19,7 +19,7 @@ function InputField(props) {
           autoComplete="off"
         />
       ) : (
-        <div className="display--text">{value === "" ? "/" : value}</div>
+        <div className={className}>{value === "" ? "/" : value}</div>
       )}
     </div>
   );

@@ -41,7 +41,7 @@ function ItemEntry(props) {
         />
       </div>
       <div className="input-container">
-        <InputField edit={edit} value={value.entryName} change={changeHandler} dataID="entryName" />
+        <InputField edit={edit} value={value.entryName} change={changeHandler} dataID="entryName" bold="true" />
         <InputField edit={edit} value={value.entryDesc} change={changeHandler} dataID="entryDesc" />
       </div>
     </div>
