@@ -4,6 +4,7 @@ import "../styles/itemEntry.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import InputField from "./InputField";
+import InputDate from "./InputDate";
 
 function ItemEntry(props) {
   const {
@@ -30,19 +31,13 @@ function ItemEntry(props) {
             <FontAwesomeIcon icon={faTrashAlt} />
           </button>
         )}
-        <input
-          type="month"
-          className="date-input"
-          name="startDate"
-          value={value.startDate}
-          onChange={changeHandler}
-        />
-        <input
-          type="month"
-          className="date-input"
+        <InputDate edit={edit} name="startDate" value={value.startDate} change={changeHandler} />
+        {!edit && "-"}
+        <InputDate
+          edit={edit}
           name="finishDate"
           value={value.finishDate}
-          onChange={changeHandler}
+          change={changeHandler}
         />
       </div>
       <div className="input-container">

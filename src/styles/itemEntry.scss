@@ -19,15 +19,12 @@
 
   .date-container {
     @include flexCenter;
+    justify-content: space-between;
     margin-top: 0.35rem;
-    width: 35%;
+    width: 42%;
     column-gap: 0.5rem;
     position: relative;
     font-family: $ff-text;
-
-    .date-input {
-      font-size: 0.8em;
-    }
 
     .removeBtn {
       font-size: 1.2rem;
@@ -43,8 +40,5 @@
       }
     }
 
-    input {
-      width: 50%;
-    }
   }
 }

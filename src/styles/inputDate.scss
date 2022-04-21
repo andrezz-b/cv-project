@@ -1,0 +1,22 @@
+@import "variables", "mixins";
+
+.date-input {
+  outline: none;
+  font-size: 0.8em;
+  padding: 0.2rem;
+  width: 50%;
+  border: 2px solid $clr-bg-blck;
+  background-color: rgba(#e5e5e5, 0.3);
+  border-radius: 5px;
+
+  &:focus {
+    border: 2px solid $clr-prim;
+    background-color: #fff;
+  }
+}
+
+.display-date {
+  @include flexCenter;
+  width: 50%;
+  font-size: 1.2em;
+}
