@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import SectionTitle from "./SectionTitle";
 import ItemEntry from "./ItemEntry";
 import SaveCancelBtn from "./SaveCancelBtn";
+import "../styles/itemList.scss";
 
 class ItemList extends Component {
   constructor(props) {
@@ -69,7 +72,7 @@ class ItemList extends Component {
     const { edit, entries } = this.state;
     const { title } = this.props;
     return (
-      <div>
+      <div className="itemList-container">
         <SectionTitle title={title} onEdit={this.changeEdit} edit={edit} />
         <div className="list">
           {entries.map((entry) => (
@@ -82,8 +85,8 @@ class ItemList extends Component {
               length={entries.length}
             />
           ))}
-          <button type="button" onClick={this.addEntry}>
-            Add
+          <button type="button" className="addButton" onClick={this.addEntry}>
+            <FontAwesomeIcon icon={faPlus} />
           </button>
           <SaveCancelBtn onEdit={this.changeEdit} edit={edit} />
         </div>

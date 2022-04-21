@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import React from "react";
+import "../styles/itemEntry.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import InputField from "./InputField";
 
 function ItemEntry(props) {
@@ -20,14 +23,32 @@ function ItemEntry(props) {
   }
 
   return (
-    <div>
-      <div>
-        {length > 1 && edit && <button type="button" onClick={() => remove(value.id)}>Remove</button>}
-        <input type="date" name="startDate" value={value.startDate} onChange={changeHandler} />
-        <input type="date" name="finishDate" value={value.finishDate} onChange={changeHandler} />
+    <div className="itemEntry-container">
+      <div className="date-container">
+        {length > 1 && edit && (
+          <button type="button" className="removeBtn" onClick={() => remove(value.id)}>
+            <FontAwesomeIcon icon={faTrashAlt} />
+          </button>
+        )}
+        <input
+          type="month"
+          className="date-input"
+          name="startDate"
+          value={value.startDate}
+          onChange={changeHandler}
+        />
+        <input
+          type="month"
+          className="date-input"
+          name="finishDate"
+          value={value.finishDate}
+          onChange={changeHandler}
+        />
       </div>
-      <InputField edit={edit} value={value.entryName} change={changeHandler} dataID="entryName" />
-      <InputField edit={edit} value={value.entryDesc} change={changeHandler} dataID="entryDesc" />
+      <div className="input-container">
+        <InputField edit={edit} value={value.entryName} change={changeHandler} dataID="entryName" />
+        <InputField edit={edit} value={value.entryDesc} change={changeHandler} dataID="entryDesc" />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,33 @@
+@import "variables", "mixins";
+
+.itemList-container {
+  align-items: flex-start;
+  width: 80%;
+  padding: .5em 2em;
+
+}
+
+.list {
+  @include flexCenter(column);
+  padding: 1rem 0;
+  row-gap: 2rem;
+  width: 100%;
+}
+
+.addButton {
+  @include flexCenter;
+  font-size: 1.1em;
+  width: 2em;
+  height: 2em;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+  color: $clr-prim;
+  border: 2px solid $clr-prim;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $clr-prim;
+    color: white;
+  }
+}

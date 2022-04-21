@@ -1,0 +1,50 @@
+@import "variables", "mixins";
+
+.itemEntry-container {
+  @include flexCenter;
+  align-items: flex-start;
+  justify-content: space-between;
+  column-gap: 2rem;
+  width: 100%;
+
+  .input-container {
+    @include flexCenter(column);
+    flex: 1;
+    row-gap: 1rem;
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+
+  .date-container {
+    @include flexCenter;
+    margin-top: 0.35rem;
+    width: 35%;
+    column-gap: 0.5rem;
+    position: relative;
+    font-family: $ff-text;
+
+    .date-input {
+      font-size: 0.8em;
+    }
+
+    .removeBtn {
+      font-size: 1.2rem;
+      border: none;
+      position: absolute;
+      background-color: transparent;
+      left: -23%;
+      color: $clr-bg-blck;
+      cursor: pointer;
+
+      &:hover {
+        color: $clr-decline;
+      }
+    }
+
+    input {
+      width: 50%;
+    }
+  }
+}
