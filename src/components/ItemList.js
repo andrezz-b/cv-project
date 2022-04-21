@@ -85,9 +85,12 @@ class ItemList extends Component {
               length={entries.length}
             />
           ))}
+          {edit && (
           <button type="button" className="addButton" onClick={this.addEntry}>
             <FontAwesomeIcon icon={faPlus} />
           </button>
+          )}
+
           <SaveCancelBtn onEdit={this.changeEdit} edit={edit} />
         </div>
       </div>
