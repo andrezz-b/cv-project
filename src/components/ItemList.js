@@ -11,17 +11,19 @@ class ItemList extends Component {
   constructor(props) {
     super(props);
 
+    const defaultEntry = {
+      id: uniqid(),
+      startDate: "",
+      finishDate: "",
+      entryName: "",
+      entryDesc: "",
+    };
+
     this.state = {
       // eslint-disable-next-line react/no-unused-state
-      entries: [
-        {
-          id: uniqid(),
-          startDate: "",
-          finishDate: "",
-          entryName: "",
-          entryDesc: "",
-        },
-      ],
+      entries: [defaultEntry],
+      // eslint-disable-next-line react/destructuring-assignment
+      defaultEntries: [defaultEntry],
       edit: true,
     };
 
@@ -29,13 +31,23 @@ class ItemList extends Component {
     this.changeHandler = this.changeHandler.bind(this);
     this.addEntry = this.addEntry.bind(this);
     this.removeEntry = this.removeEntry.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   changeEdit() {
-    const { edit } = this.state;
+    const { edit, entries } = this.state;
     this.setState({
       edit: !edit,
+      defaultEntries: entries,
     });
+  }
+
+  cancelEdit() {
+    const { defaultEntries } = this.state;
+    this.setState({
+      entries: defaultEntries,
+    });
+    this.changeEdit();
   }
 
   changeHandler(newValue) {
@@ -86,12 +98,12 @@ class ItemList extends Component {
             />
           ))}
           {edit && (
-          <button type="button" className="addButton" onClick={this.addEntry}>
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
+            <button type="button" className="addButton" onClick={this.addEntry}>
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
           )}
 
-          <SaveCancelBtn onEdit={this.changeEdit} edit={edit} />
+          <SaveCancelBtn onEdit={this.changeEdit} edit={edit} onCancel={this.cancelEdit} />
         </div>
       </div>
     );
