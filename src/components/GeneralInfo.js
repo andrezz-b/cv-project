@@ -1,50 +1,35 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import InputField from "./InputField";
 import SaveCancelBtn from "./SaveCancelBtn";
 import SectionTitle from "./SectionTitle";
 import "../styles/generalInfo.scss";
 
-class GeneralInfo extends Component {
-  constructor(props) {
-    super(props);
+function GeneralInfo() {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
-    this.state = {
-      data: {
-        name: "",
-        email: "",
-        phone: "",
-      },
-      defaultData: {
-        name: "",
-        email: "",
-        phone: "",
-      },
-      edit: true,
-    };
-    this.changeEdit = this.changeEdit.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
-  }
+  const [defaultData, setDefaultData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
-  cancelEdit() {
-    const { defaultData } = this.state;
-    this.setState({
-      data: defaultData,
-    });
-    this.changeEdit();
-  }
+  const [edit, setEdit] = useState(true);
 
-  changeEdit() {
-    const { edit, data } = this.state;
-    this.setState({
-      edit: !edit,
-      defaultData: data,
-    });
-  }
+  const changeEdit = () => {
+    setEdit(!edit);
+    setDefaultData(data);
+  };
+  const cancelEdit = () => {
+    setData(defaultData);
+    changeEdit();
+  };
 
-  changeHandler(e) {
+  const changeHandler = (e) => {
     const { name, value } = e.target;
-    const { data } = this.state;
     const newData = Object.fromEntries(
       Object.entries(data).map((entry) => {
         // eslint-disable-next-line no-param-reassign
@@ -52,45 +37,41 @@ class GeneralInfo extends Component {
         return entry;
       }),
     );
-    this.setState({
-      data: newData,
-    });
-  }
+    setData(newData);
+  };
 
-  render() {
-    const { edit, data } = this.state;
-    const { name, email, phone } = data;
-    return (
-      <div className="generalInfo-container">
-        <SectionTitle title="General Info" onEdit={this.changeEdit} edit={edit} />
-        <form className="generalInfo-form" onSubmit={(e) => e.preventDefault()}>
-          <InputField
-            title="Name:"
-            edit={edit}
-            value={name}
-            change={this.changeHandler}
-            dataID="name"
-          />
-          <InputField
-            title="E-mail:"
-            edit={edit}
-            value={email}
-            change={this.changeHandler}
-            dataID="email"
-          />
-          <InputField
-            title="Phone-number:"
-            edit={edit}
-            value={phone}
-            change={this.changeHandler}
-            dataID="phone"
-          />
+  const { name, email, phone } = data;
 
-          <SaveCancelBtn edit={edit} onEdit={this.changeEdit} onCancel={this.cancelEdit} />
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="generalInfo-container">
+      <SectionTitle title="General Info" onEdit={changeEdit} edit={edit} />
+      <form className="generalInfo-form" onSubmit={(e) => e.preventDefault()}>
+        <InputField
+          title="Name:"
+          edit={edit}
+          value={name}
+          change={changeHandler}
+          dataID="name"
+        />
+        <InputField
+          title="E-mail:"
+          edit={edit}
+          value={email}
+          change={changeHandler}
+          dataID="email"
+        />
+        <InputField
+          title="Phone-number:"
+          edit={edit}
+          value={phone}
+          change={changeHandler}
+          dataID="phone"
+        />
+
+        <SaveCancelBtn edit={edit} onEdit={changeEdit} onCancel={cancelEdit} />
+      </form>
+    </div>
+  );
 }
 
 export default GeneralInfo;

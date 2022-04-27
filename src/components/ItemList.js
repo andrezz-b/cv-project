@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import uniqid from "uniqid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,61 +7,20 @@ import ItemEntry from "./ItemEntry";
 import SaveCancelBtn from "./SaveCancelBtn";
 import "../styles/itemList.scss";
 
-class ItemList extends Component {
-  constructor(props) {
-    super(props);
+function ItemList(props) {
+  const defaultEntry = {
+    id: uniqid(),
+    startDate: "",
+    finishDate: "",
+    entryName: "",
+    entryDesc: "",
+  };
 
-    const defaultEntry = {
-      id: uniqid(),
-      startDate: "",
-      finishDate: "",
-      entryName: "",
-      entryDesc: "",
-    };
-
-    this.state = {
-      // eslint-disable-next-line react/no-unused-state
-      entries: [defaultEntry],
-      // eslint-disable-next-line react/destructuring-assignment
-      defaultEntries: [defaultEntry],
-      edit: true,
-    };
-
-    this.changeEdit = this.changeEdit.bind(this);
-    this.changeHandler = this.changeHandler.bind(this);
-    this.addEntry = this.addEntry.bind(this);
-    this.removeEntry = this.removeEntry.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
-  }
-
-  changeEdit() {
-    const { edit, entries } = this.state;
-    this.setState({
-      edit: !edit,
-      defaultEntries: entries,
-    });
-  }
-
-  cancelEdit() {
-    const { defaultEntries } = this.state;
-    this.setState({
-      entries: defaultEntries,
-    });
-    this.changeEdit();
-  }
-
-  changeHandler(newValue) {
-    const { entries } = this.state;
-    const newEntry = entries.map((val) => (val.id === newValue.id ? newValue : val));
-    this.setState({
-      entries: newEntry,
-    });
-  }
-
-  addEntry() {
-    const { entries } = this.state;
-    this.setState({
-      entries: entries.concat([
+  const [entries, setEntries] = useState([defaultEntry]);
+  const [defaultEntries, setDefaultEntries] = useState([defaultEntry]);
+  const addEntry = () => {
+    setEntries(
+      entries.concat([
         {
           id: uniqid(),
           startDate: "",
@@ -70,44 +29,55 @@ class ItemList extends Component {
           entryDesc: "",
         },
       ]),
-    });
-  }
-
-  removeEntry(id) {
-    const { entries } = this.state;
-    this.setState({
-      entries: entries.filter((entry) => entry.id !== id),
-    });
-  }
-
-  render() {
-    const { edit, entries } = this.state;
-    const { title } = this.props;
-    return (
-      <div className="itemList-container">
-        <SectionTitle title={title} onEdit={this.changeEdit} edit={edit} />
-        <div className="list">
-          {entries.map((entry) => (
-            <ItemEntry
-              key={entry.id}
-              edit={edit}
-              change={this.changeHandler}
-              value={entry}
-              remove={this.removeEntry}
-              length={entries.length}
-            />
-          ))}
-          {edit && (
-            <button type="button" className="addButton" onClick={this.addEntry}>
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
-          )}
-
-          <SaveCancelBtn onEdit={this.changeEdit} edit={edit} onCancel={this.cancelEdit} />
-        </div>
-      </div>
     );
-  }
+  };
+
+  const removeEntry = (id) => {
+    setEntries(entries.filter((entry) => entry.id !== id));
+  };
+
+  const [edit, setEdit] = useState(true);
+  const changeEdit = () => {
+    setEdit(!edit);
+    setDefaultEntries(entries);
+  };
+
+  const cancelEdit = () => {
+    setEntries(defaultEntries);
+    changeEdit();
+  };
+
+  const changeHandler = (newValue) => {
+    const newEntry = entries.map((val) => (val.id === newValue.id ? newValue : val));
+    setEntries(newEntry);
+  };
+
+  const { title } = props;
+
+  return (
+    <div className="itemList-container">
+      <SectionTitle title={title} onEdit={changeEdit} edit={edit} />
+      <div className="list">
+        {entries.map((entry) => (
+          <ItemEntry
+            key={entry.id}
+            edit={edit}
+            change={changeHandler}
+            value={entry}
+            remove={removeEntry}
+            length={entries.length}
+          />
+        ))}
+        {edit && (
+          <button type="button" className="addButton" onClick={addEntry}>
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
+        )}
+
+        <SaveCancelBtn onEdit={changeEdit} edit={edit} onCancel={cancelEdit} />
+      </div>
+    </div>
+  );
 }
 
 export default ItemList;
